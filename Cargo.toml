@@ -1,9 +1,7 @@
 [package]
-name = "test-program"
-version = "3.5.0"
-description = "Solana Program Library Token"
-authors = ["Solana Maintainers <maintainers@solana.foundation>"]
-repository = "https://github.com/solana-labs/solana-program-library"
+name = "rust_example_program"
+version = "0.1.0"
+description = "Solana Example Program"
 license = "Apache-2.0"
 edition = "2018"
 exclude = ["js/**"]
