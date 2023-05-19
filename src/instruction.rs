@@ -15,7 +15,7 @@ pub enum OnchainAccountInstruction {
         id: u8,
         name: String,
     },
-    InitializeCustomMint,
+    Hello,
 }
 
 #[derive(BorshDeserialize)]
@@ -33,7 +33,7 @@ impl OnchainAccountInstruction {
         
         Ok(match variant {
 
-            0 => Self::InitializeCustomMint,
+            0 => Self::Hello,
 
 
             // Create OnChainAccount

@@ -18,9 +18,8 @@ pub fn process_instruction(
     accounts: &[AccountInfo],
     instruction_data: &[u8],
 ) -> ProgramResult {
-    msg!("Hello Solana!");
     msg!(
-        "process_instruction: {}: {} accounts, data={:?}",
+        "process_instruction: Program {} is executed with {} account(s) and the following data={:?}",
         program_id,
         accounts.len(),
         instruction_data
