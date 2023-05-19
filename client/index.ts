@@ -31,16 +31,14 @@ async function hello(signer: web3.Keypair, programId: web3.PublicKey, connection
     const instructionId = 0
     const instructionData = new onchainInstructionData(
         {
-            instruction: instructionId,
-            id: 11,
-            name: "test"
+            instruction: instructionId
         }
     )
 
     // Encode instruction data according to buffer layout
     let serializedInstructionData = Buffer.from(
         borsh.serialize(
-            onchainInstructionDataSchema,
+            helloInstructionDataSchema,
             instructionData
         )
     )
@@ -142,9 +140,9 @@ async function initializeOnchainAccount(signer: web3.Keypair, programId: web3.Pu
 // Define instruction buffer
 class onchainInstructionData {
     instruction;
-    id;
-    name;
-    constructor(fields: { instruction: number, id: number, name: string } | undefined = undefined) {
+    id?;
+    name?;
+    constructor(fields: { instruction: number, id?: number, name?: string } | undefined = undefined) {
         if (fields) {
         this.instruction = fields.instruction;
         this.id = fields.id;
@@ -156,18 +154,30 @@ class onchainInstructionData {
 /**
  * Borsh schema definition for greeting state account
  */
-const onchainInstructionDataSchema = new Map([
+const helloInstructionDataSchema = new Map([
 [
     onchainInstructionData, 
     {   
         kind: "struct", 
         fields: [
-            ["instruction", "u8"],
-            ["id", "u8"],
-            ["name", "string"]
+            ["instruction", "u8"]
         ] 
     }
 ],
 ]);
+
+const onchainInstructionDataSchema = new Map([
+    [
+        onchainInstructionData, 
+        {   
+            kind: "struct", 
+            fields: [
+                ["instruction", "u8"],
+                ["id", "u8"],
+                ["name", "string"]
+            ] 
+        }
+    ],
+    ]);
 
 
