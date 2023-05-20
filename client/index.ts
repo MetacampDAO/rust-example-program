@@ -15,7 +15,7 @@ async function main() {
       
     const connection = new web3.Connection(web3.clusterApiUrl('devnet'))
     const signer = initializeSolSignerKeypair()  
-    await airdropSolIfNeeded(signer, connection)
+    await airdropSolIfNeeded(connection, signer.publicKey, 2, 0.05)
     
     const onChainProgramId = new web3.PublicKey('4bNwLdGiPRdVGvzojLFsGc3fz9fxSzjcpCUPHzrjbFUT')
     await hello(signer, onChainProgramId, connection)
